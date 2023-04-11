@@ -9,54 +9,22 @@ export default function App() {
 
   LogBox.ignoreAllLogs(true);
   const [audioIndex, setarAudioIndex] = useState(0);
-
   const [playing, setPlaying] = useState(false);
-
   const [audio, setarAudio] = useState(null);
-
   const [musicas, setarMusicas] = useState([
     
     {
-        nome: 'Sweet child of mine',
-        artita: 'Guns N Roses',
-        playing:false,
-        file: require('./audio.mp3')
-    }, 
-
-    {
-      nome: 'Unity',
-      artita: 'Alan Walkers',
-      playing:false,
-      file: require('./unity.mp3')
-  }, 
-
-  {
-    nome: 'This love',
-    artita: 'Marron 5',
-    playing:false,
-    file: {uri:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'}
-    
+        nome: 'Dois Click',
+        artista: 'DESSIIIK ft. Rudies Flacko',
+        playing: false,
+        file: require('../atividadeMusic/music/dois_click.mp3')
     },
-     {
-        nome: 'Sweet child of mine',
-        artita: 'Guns N Roses',
-        playing:false,
-        file: require('./audio.mp3')
-    }, 
 
     {
-      nome: 'Unity',
-      artita: 'Alan Walkers',
-      playing:false,
-      file: require('./unity.mp3')
-  }, 
-
-  {
-    nome: 'This love',
-    artita: 'Marron 5',
-    playing:false,
-    file: {uri:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'}
-    
+      nome: 'Chrome Hearts',
+      artista: 'DESSIIIK',
+      playing: false,
+      file: require('../atividadeMusic/music/chrome_hearts.mp3')
     }
 
   ]);
@@ -65,24 +33,24 @@ export default function App() {
      let curFile = null;
      let newMusics= musicas.filter((val, k)=>{
       if(id == k){
-        //Toca a música aqui
+        //TOCA A MÚSICA AQUI
         musicas[k].playing = true;
         curFile = musicas[k].file;
         setPlaying(true);
         setarAudioIndex(id);
         
-      }else{
+      } else{
          musicas[k].playing = false;
-      }
-       return musicas[k];
+      };
 
-     })
+      return musicas[k];
+     });
 
      if(audio != null){
         audio.unloadAsync();
-     }
+     };
 
-     //Instancia o Audio
+     //INSTÂNCIA O ÁUDIO
      let curAudio = new Audio.Sound();
 
      try{
@@ -94,16 +62,14 @@ export default function App() {
   
      setarAudio(curAudio);
      setarMusicas(newMusics);
-  }
-
-  
+  };
 
   return (
     <View style={{flex:1}}>
     <ScrollView style={styles.container}>
       <StatusBar hidden />
       <View style={styles.header}>
-      <Text style={{textAlign:'center', color:'white', fontSize:25}}>App Música | Luís</Text>
+      <Text style={{textAlign:'center', color:'white', fontSize:25}}>TRAP LABEL</Text>
       </View>
 
       <View style={styles.table}>
@@ -119,7 +85,7 @@ export default function App() {
                   <TouchableOpacity onPress={()=>changeMusic(k)} style={{width:'100%', flexDirection:'row'}}>
                     <Text style={styles.tableTextSelected}><AntDesign name="play" size={15}
                      color="#1DB954"/>{val.nome}</Text>
-                    <Text style={styles.tableTextSelected}>{val.artita}</Text>
+                    <Text style={styles.tableTextSelected}>{val.artista}</Text>
                   </TouchableOpacity>
                 </View>
                 );
@@ -129,7 +95,7 @@ export default function App() {
                   <TouchableOpacity onPress={()=>changeMusic(k)} style={{width:'100%', flexDirection:'row'}}>
                     <Text style={styles.tableText}><AntDesign name="play" size={15} color="white"/>{val.nome}
                     </Text>
-                    <Text style={styles.tableText}>{val.artita}</Text>
+                    <Text style={styles.tableText}>{val.artista}</Text>
                   </TouchableOpacity>
                 </View>
                   );
